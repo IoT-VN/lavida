@@ -1,0 +1,48 @@
+import { Property } from '@/types';
+
+export const properties: Property[] = [
+  {
+    id: '1',
+    name: 'Căn 1PN Deluxe',
+    type: '1BR',
+    size: '48m² - 62m²',
+    price: '2.3 tỷ',
+    bedrooms: 1,
+    bathrooms: 1,
+    description: 'Căn hộ 1 phòng ngủ thiết kế hiện đại, tối ưu không gian sống, phù hợp cho gia đình trẻ hoặc nhà đầu tư.',
+    images: ['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80'],
+  },
+  {
+    id: '2',
+    name: 'Căn 2PN Premium',
+    type: '2BR',
+    size: '68m² - 85m²',
+    price: '3.5 tỷ',
+    bedrooms: 2,
+    bathrooms: 2,
+    description: 'Căn hộ 2 phòng ngủ với view biển panoramic, ban công rộng, phòng khách liền bếp hiện đại.',
+    images: ['https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80'],
+  },
+  {
+    id: '3',
+    name: 'Căn 3PN Luxury',
+    type: '3BR',
+    size: '95m² - 120m²',
+    price: '5.2 tỷ',
+    bedrooms: 3,
+    bathrooms: 2,
+    description: 'Căn hộ 3 phòng ngủ cao cấp, view biển đa hướng, thiết kế thông minh với không gian sống rộng rãi.',
+    images: ['https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80'],
+  },
+  {
+    id: '4',
+    name: 'Penthouse Sky Villa',
+    type: 'Penthouse',
+    size: '150m² - 200m²',
+    price: '12 tỷ',
+    bedrooms: 4,
+    bathrooms: 3,
+    description: 'Penthouse đẳng cấp với sân thượng riêng, view 360 độ, hồ bơi riêng, nội thất nhập khẩu.',
+    images: ['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80'],
+  },
+];
