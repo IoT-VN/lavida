@@ -23,7 +23,7 @@ export const DEFAULT_METADATA: Metadata = {
   publisher: SITE_NAME,
   metadataBase: new URL(SITE_URL),
   alternates: {
-    canonical: '/',
+    canonical: process.env.NEXT_PUBLIC_SITE_URL || '/',
   },
   openGraph: {
     type: 'website',
