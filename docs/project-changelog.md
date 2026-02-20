@@ -11,6 +11,16 @@ All notable changes to the La Vida landing page project will be documented in th
 - Documentation framework establishment
 - Development standards and guidelines
 
+### [0.2.0] - February 21, 2026
+
+#### Phase 1: Critical Fixes & Security Enhancements
+- ✅ **Security**: Re-enabled CSP headers with proper allowlists for enhanced security
+- ✅ **SEO**: Created dynamic sitemap.xml for improved search engine visibility
+- ✅ **Accessibility**: Fixed mobile menu focus trap (Tab/Shift+Tab/Escape, aria-expanded, body scroll lock)
+- ✅ **Accessibility**: Fixed gold color contrast to WCAG AA standard (#9a7b0a)
+- ✅ **Legal**: Removed mock review data from JSON-LD schema to ensure accurate representation
+- ✅ **Design**: Created two gold variants (accent-400 for decorative, accent-500 for text) for better accessibility
+
 ### [0.1.0] - February 19, 2026
 
 #### Project Setup & Documentation

@@ -4,7 +4,8 @@
 
 :root {
   --color-primary-500: #1a56db;
-  --color-accent-500: #b8941f;
+  --color-accent-400: #b8941f; /* Decorative/large text/backgrounds */
+  --color-accent-500: #9a7b0a; /* Text on white - passes WCAG AA (4.5:1) */
   --color-neutral-900: #171717;
   --color-neutral-50: #fafafa;
 }

@@ -268,3 +268,31 @@ docs: update code standards documentation
 - Project setup instructions
 - Development workflow
 - Deployment process
+
+## Accessibility Standards
+
+### 1. ARIA Labels & Focus Management
+- Use meaningful ARIA labels for interactive elements
+- Provide alternative text for all images
+- Ensure keyboard navigation works for all components
+- **Focus Trap Requirements**: For mobile menu and modals:
+  - Tab key cycles through interactive elements
+  - Shift+Tab allows reverse navigation
+  - Escape key closes/cancels
+  - aria-expanded attribute properly managed
+  - Body scroll lock implemented when dialogs are open
+
+### 2. Color Contrast
+- Follow WCAG AA standards for text contrast (minimum 4.5:1)
+- Use proper color combinations for readability
+- Test colors on different background shades
+- **Gold Color Standard**: #9a7b0a for text on white backgrounds
+- **Color Variants**:
+  - accent-400: For decorative elements
+  - accent-500: For text elements (better contrast)
+
+### 3. Screen Reader Support
+- Structure content with proper heading hierarchy
+- Use semantic HTML elements
+- Provide skip navigation links
+- JSON-LD schema must not contain mock data

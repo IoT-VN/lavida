@@ -22,8 +22,8 @@ const config: Config = {
           900: '#1e2a5e',
         },
         accent: {
-          400: '#c9a96e',
-          500: '#b8941f',
+          400: '#b8941f', // Decorative/large text/backgrounds
+          500: '#9a7b0a', // Text on white - passes WCAG AA (4.5:1)
           600: '#9a7614',
         },
         neutral: {

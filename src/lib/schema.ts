@@ -31,11 +31,7 @@ export function generateRealEstateListingSchema() {
       'An ninh 24/7',
       'Sky Lounge',
     ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '125',
-    },
+    // TODO: Add real aggregateRating when verified reviews available
   };
 }
 

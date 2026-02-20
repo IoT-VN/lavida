@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { NAV_LINKS, CONTACT } from '@/lib/constants';
 import { Button } from '@/components/ui/button';
@@ -8,6 +8,8 @@ import { Button } from '@/components/ui/button';
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const toggleButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +19,60 @@ export function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Focus trap and body scroll lock for mobile menu
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      // Focus first link in menu
+      const firstLink = menuRef.current?.querySelector('a');
+      firstLink?.focus();
+
+      // Lock body scroll
+      document.body.style.overflow = 'hidden';
+
+      // Trap focus within menu
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          setIsMobileMenuOpen(false);
+          toggleButtonRef.current?.focus(); // Return focus to toggle button
+          return;
+        }
+
+        // Tab/Shift+Tab cycling
+        if (e.key === 'Tab') {
+          const focusableElements = menuRef.current?.querySelectorAll(
+            'a, button, [tabindex]:not([tabindex="-1"])'
+          );
+          if (!focusableElements || focusableElements.length === 0) return;
+
+          const firstElement = focusableElements[0] as HTMLElement;
+          const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+          if (e.shiftKey) {
+            // Shift+Tab: if at first element, cycle to last
+            if (document.activeElement === firstElement) {
+              e.preventDefault();
+              lastElement.focus();
+            }
+          } else {
+            // Tab: if at last element, cycle to first
+            if (document.activeElement === lastElement) {
+              e.preventDefault();
+              firstElement.focus();
+            }
+          }
+        }
+      };
+      document.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.removeEventListener('keydown', handleKeyDown);
+        document.body.style.overflow = '';
+      };
+    } else {
+      // Unlock body scroll when menu closes
+      document.body.style.overflow = '';
+    }
+  }, [isMobileMenuOpen]);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -82,9 +138,12 @@ export function Header() {
 
           {/* Mobile Menu Button */}
           <button
+            ref={toggleButtonRef}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 rounded-lg"
             aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             <svg
               className={`w-6 h-6 ${isScrolled ? 'text-neutral-900' : 'text-white'}`}
@@ -104,7 +163,11 @@ export function Header() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-neutral-200">
+        <div
+          ref={menuRef}
+          id="mobile-menu"
+          className="md:hidden bg-white border-t border-neutral-200"
+        >
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-4">
             <nav className="flex flex-col space-y-4">
               {NAV_LINKS.map((link) => (

@@ -21,10 +21,35 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
 
-  // Security headers - temporarily disabled to fix CSS/images loading
-  // async headers() {
-  //   ... (CSP headers commented out)
-  // },
+  // Security headers with proper allowlists for production
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' *.googletagmanager.com *.facebook.net *.google-analytics.com",
+              "style-src 'self' 'unsafe-inline' *.googleapis.com",
+              "img-src 'self' data: blob: *.unsplash.com *.googleusercontent.com",
+              "font-src 'self' data: *.googleapis.com *.gstatic.com",
+              "connect-src 'self' *.google-analytics.com *.facebook.com *.analytics.google.com",
+              "frame-src 'self' *.facebook.com",
+              "base-uri 'self'",
+              "form-action 'self'",
+            ].join('; '),
+          },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+          { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains' },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
