@@ -85,9 +85,6 @@ export function Footer() {
               <Link href="/privacy-policy" className="hover:text-primary-500 transition-colors">
                 Chính Sách Bảo Mật
               </Link>
-              <Link href="/terms-of-service" className="hover:text-primary-500 transition-colors">
-                Điều Khoản Sử Dụng
-              </Link>
             </div>
           </div>
           <p className="text-neutral-600 text-xs mt-4 text-center">

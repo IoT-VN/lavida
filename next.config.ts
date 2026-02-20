@@ -36,7 +36,7 @@ const nextConfig: NextConfig = {
               "img-src 'self' data: blob: *.unsplash.com *.googleusercontent.com",
               "font-src 'self' data: *.googleapis.com *.gstatic.com",
               "connect-src 'self' *.google-analytics.com *.facebook.com *.analytics.google.com",
-              "frame-src 'self' *.facebook.com",
+              "frame-src 'self' *.facebook.com *.google.com",
               "base-uri 'self'",
               "form-action 'self'",
             ].join('; '),
